@@ -19,10 +19,10 @@ public class BankAccount {
         WORKPLACE
     }
 
-    private int accountNumber;
+    public int accountNumber;
     public BankAccountType accountType;
-    private double accountBalance;
-    private String ownerName;
+    public double accountBalance;
+    public String ownerName;
     public double interestRate;
     private double interestEarned;
 
@@ -30,6 +30,10 @@ public class BankAccount {
         /*
          * Implement this function
          */
+        ownerName = name;
+        this.accountType = accountCategory;
+        Bank.totalAccounts++;
+
     }
 
     /*

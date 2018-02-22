@@ -26,10 +26,19 @@ public class Bank {
      * @return boolean
      */
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
+        if(amount<0) {
+            return false;
+        } else if((bankAccount.accountBalance - amount)<0) {
+            return false;
+        } else {
+            bankAccount.accountBalance = bankAccount.accountBalance - amount;
+            return true;
+        }
+        }
         /*
          * Implement this function
          */
-    }
+
 
     /**
      * Deposit money in an account.
@@ -42,10 +51,19 @@ public class Bank {
      * @return boolean
      */
     public boolean depositMoney(final BankAccount bankAccount, final double amount) {
+        if(amount<0) {
+            return false;
+        } else if((bankAccount.accountBalance + amount)<0) {
+            return false;
+        } else {
+            bankAccount.accountBalance = bankAccount.accountBalance + amount;
+            return true;
+        }
+    }
         /*
          * Implement this function
          */
-    }
+
 
     /**
      * Transfer money from one account to another.
@@ -61,6 +79,21 @@ public class Bank {
 
     public boolean transferMoney(final BankAccount source, final BankAccount destination,
             final double amount) {
+        if(source == null || destination == null){
+            return false;
+        } else if(amount < 0){
+            return false;
+        }
+        source.accountBalance = source.accountBalance - amount;
+        destination.accountBalance= destination.accountBalance + amount;
+        if(source.accountBalance < 0){
+            return false;
+        } else if(destination.accountBalance < 0)
+        {
+            return false;
+        } else{
+            return true;
+        }
         /*
          * Implement this function
          */
@@ -74,6 +107,7 @@ public class Bank {
      */
 
     public void changeOwnerName(final BankAccount bankAccount, final String name) {
+       bankAccount.ownerName = name;
         /*
          * Implement this function
          */
@@ -86,10 +120,12 @@ public class Bank {
      * @return the total number of accounts
      */
     public static int getNumberOfAccount() {
+        return totalAccounts;
         /*
          * Implement this function
          */
     }
+
 
     /**
      * Main method for testing.
